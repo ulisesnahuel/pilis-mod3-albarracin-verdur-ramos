@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ForecastProvider } from './context/ForecastContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+   <ForecastProvider>
     <App />
+   </ForecastProvider>
   </React.StrictMode>
 );
 

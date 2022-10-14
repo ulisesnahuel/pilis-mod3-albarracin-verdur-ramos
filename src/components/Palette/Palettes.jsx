@@ -1,22 +1,17 @@
 import "./Palettes.css";
 import Palette from "./Palette";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import {ForecastContext} from "../../context/ForecastContext";
 
-const Palettes = () => {
-  const [palettes, setPalettes] = useState([]);
-  // get data from localstorage and save in palettes state
-  useEffect(() => {
-    const getPalettes = () => {
-      const palettes = JSON.parse(localStorage.getItem("palette"));
-      setPalettes(palettes);
-    };
-    getPalettes();
-  }, []);
 
+
+
+
+const Palettes = ({palettes}) => {
   return (
     <div className="grid">
       {palettes.map((palette) => (
-        <Palette key={palette.id} palette={palette} />
+        <Palette key={palette.id} palette= {palette }/>
       ))}
     </div>
   );
