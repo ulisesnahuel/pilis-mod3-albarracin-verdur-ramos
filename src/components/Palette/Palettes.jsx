@@ -1,8 +1,5 @@
 import "./Palettes.css";
 import Palette from "./Palette";
-import { useState, useEffect, useContext } from "react";
-import {ForecastContext} from "../../context/ForecastContext";
-
 
 const Palettes = ({palettes}) => {
   return (

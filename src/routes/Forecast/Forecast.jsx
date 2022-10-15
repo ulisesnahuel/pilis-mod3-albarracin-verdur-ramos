@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext,  useState } from "react";
 import { useForm } from "react-hook-form";
 import { getForecast } from "../../service";
 import { useNavigate } from "react-router-dom";
 import { ForecastContext } from "../../context/ForecastContext";
 import "./Forecast.css";
+// importar uuidv4
+import { v4 as uuidv4 } from "uuid";
 
 const Forecast = () => {
   const {
@@ -22,7 +24,9 @@ const Forecast = () => {
     const info = await getForecast(latitude, longitude);
     const { current_weather } = info;
     const forecastNew = {
-      id: forecast.length + 1,
+      //creamos un id para cada objeto unico para cada objeto con import 
+      //de la libreria uuid
+      id: uuidv4(),
       place: place,
       latitude: latitude,
       longitude: longitude,
