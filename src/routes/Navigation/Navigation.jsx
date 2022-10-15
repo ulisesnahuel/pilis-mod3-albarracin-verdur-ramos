@@ -1,6 +1,6 @@
 import { Outlet,Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import forecastLogo from "../../assets/calamardo.gif";
+import forecastLogo from "../../assets/forecast.png";
 import "./Navigations.css";
 
 const Navigation = () => {

@@ -6,7 +6,6 @@ const Palette = ({ palette }) => {
   //const { forecast, setForecast } = useContext(ForecastContext);
   const { id, place, latitude, longitude, temperature, windspeed } = palette;
 
-  
   const handleDelete = (id) => {
     const palettes = JSON.parse(localStorage.getItem("forecast"));
     const newPalettes = palettes.filter((palette) => palette.id !== id);
@@ -15,21 +14,26 @@ const Palette = ({ palette }) => {
   };
 
   return (
-    <div className="palette-container">
-      <div className="delete">
-        <AiOutlineClose
-          className="delete-icon"
+    <div id="weather_wrapper">
+      <div className="weatherCard">
+        <div className="currentTemp">
+          <span className="temp">{temperature}&deg;</span>
+          <span className="location">{place}</span>
+        </div>
+        <div className="currentWeather">
+          <span className="delete"><AiOutlineClose
+          className="icon"
           onClick={() => handleDelete(id)}
-        />
-      </div>
-      <div className="palette">
-        <p>Cuidad: {place}</p>
-        <p>Latitud: {latitude}</p>
-        <p>Longitud: {longitude}</p>
-        <p>Temperatura: {temperature}</p>
-        <p>Viento: {windspeed}</p>
+        /></span>
+          <span className="conditions">&#xf00d;</span>
+          <div className="info">
+            <span className="wind">{windspeed}</span>
+          </div>
+        </div>
       </div>
     </div>
+
+    
   );
 };
 
