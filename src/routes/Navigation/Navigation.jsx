@@ -1,11 +1,24 @@
 import { Outlet,Link } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import forecastLogo from "../../assets/calamardo.gif";
+import "./Navigations.css";
 
 const Navigation = () => {
   return (
     <>
+
       <div className="navigation">
-        <Link to="/"></Link>
-        <Link to="/Forecast">Forecast</Link>
+        <Link className='logo-container' to='/'>
+          <img src={forecastLogo} alt ='Logo' className="logo" />
+        </Link>
+        <div className='nav-links-container'>
+            <Link className='nav-link sign-in' to='Forecast'>
+              Nuevo pronostico
+            </Link>
+            <Link className='nav-link sign-in' to='/'>
+              Volver
+            </Link>
+        </div>
       </div>
       <Outlet/>
     </>

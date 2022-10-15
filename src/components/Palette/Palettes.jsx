@@ -4,9 +4,6 @@ import { useState, useEffect, useContext } from "react";
 import {ForecastContext} from "../../context/ForecastContext";
 
 
-
-
-
 const Palettes = ({palettes}) => {
   return (
     <div className="grid">

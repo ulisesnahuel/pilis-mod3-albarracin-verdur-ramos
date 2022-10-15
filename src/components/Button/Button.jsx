@@ -2,7 +2,7 @@ import './Button.css'
 const Button = () => {
     return (
       <div className="button-container">
-        <button className="button">Agregar</button>
+        <button className="button"></button>
       </div>
     );
   };

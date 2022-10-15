@@ -1,43 +1,42 @@
-import "./Forecast.css";
-import { v4 as uuidv4 } from "uuid";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {getForecast} from "../../service"
-// import { ForecastContext } from "../../context/ForecastContext";  
+import { useNavigate } from 'react-router-dom';
+import { ForecastContext } from "../../context/ForecastContext";  
+import "./Forecast.css";
 
 const Forecast = () => {
 
   const { register, handleSubmit , formState: { errors } } = useForm();
   const [isLoading, setIsLoading] = useState(false);
-  // const [forecast, setForecast] = useContext(ForecastContext);
+  const navigate = useNavigate();
+  const { forecast, setForecast } = useContext(ForecastContext);
 
-  // buscar pronostico por latitud y longitud
+  //se crear el objeto newForecast
   const onSubmit = async (data) => {
-    //Event.preventDefault();
     setIsLoading(true);
     const { place, latitude, longitude } = data;
     const info = await getForecast(latitude, longitude);
     const { current_weather } = info;
-    const newForecast = {
-      id: uuidv4(),
+    const forecastNew = {
+      id: forecast.length +1, 
       place: place,
       latitude: latitude,
       longitude: longitude,
       temperature: current_weather.temperature,
       windspeed: current_weather.windspeed,
     };
-    //guardar en localstorage newForecast
+    // se guardar en localstorage newForecast
+    setForecast([...forecast, forecastNew]);
+    
     const forecasts = JSON.parse(localStorage.getItem("forecast")) || [];
-      localStorage.setItem("forecast", JSON.stringify([...forecasts, newForecast]));
+      localStorage.setItem("forecast", JSON.stringify([...forecasts, forecastNew]));
       setIsLoading(false);
+      
+      navigate('/')
     }   
     
-    useEffect (() => {
-      
-    }, [onSubmit]);
   
-
-  //were add new palette render
   return (
     <div className="form-container">
       <span> New Forecast </span>
@@ -73,6 +72,7 @@ const Forecast = () => {
         <button className="button" type="submit">
           Crear Punto
         </button>
+        
       </form>
     </div>
   );
