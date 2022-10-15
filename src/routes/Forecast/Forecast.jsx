@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import {getForecast} from "../../service"
-import { useNavigate } from 'react-router-dom';
-import { ForecastContext } from "../../context/ForecastContext";  
+import { getForecast } from "../../service";
+import { useNavigate } from "react-router-dom";
+import { ForecastContext } from "../../context/ForecastContext";
 import "./Forecast.css";
 
 const Forecast = () => {
-
-  const { register, handleSubmit , formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { forecast, setForecast } = useContext(ForecastContext);
@@ -19,7 +22,7 @@ const Forecast = () => {
     const info = await getForecast(latitude, longitude);
     const { current_weather } = info;
     const forecastNew = {
-      id: forecast.length +1, 
+      id: forecast.length + 1,
       place: place,
       latitude: latitude,
       longitude: longitude,
@@ -28,99 +31,60 @@ const Forecast = () => {
     };
     // se guardar en localstorage newForecast
     setForecast([...forecast, forecastNew]);
-    
+
     const forecasts = JSON.parse(localStorage.getItem("forecast")) || [];
-      localStorage.setItem("forecast", JSON.stringify([...forecasts, forecastNew]));
-      setIsLoading(false);
-      
-      navigate('/')
-    }   
-    
-  
+    localStorage.setItem(
+      "forecast",
+      JSON.stringify([...forecasts, forecastNew])
+    );
+    setIsLoading(false);
+
+    navigate("/");
+  };
+
   return (
     <div className="login-box">
       <h2> Nuevo punto (forecast) </h2>
-      <form  onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="user-box">
-        <input
-          type="text"
-          placeholder="Nombre de la ubicacion..."
-          {...register("place", {
-            required: "falta nombre",
-          })}
-        />
-        <label>Nombre</label>
-        <p>{errors.place?.message}</p>
+          <input
+            type="text"
+            placeholder="Nombre de la ubicacion..."
+            {...register("place", {
+              required: "falta nombre",
+            })}
+          />
+          <label>Nombre</label>
+          <p>{errors.place?.message}</p>
         </div>
         <div className="user-box">
-        <input
-          
-          type="text"
-          placeholder="Latitude"
-          {...register("latitude", {
-            required: "ingrese latitud",
-          })}
-        />
-         <label>Latitud</label>
-        <p>{errors.latitude?.message}</p>
+          <input
+            type="text"
+            placeholder="Latitud..."
+            {...register("latitude", {
+              required: "ingrese latitud",
+            })}
+          />
+          <label>Latitud</label>
+          <p>{errors.latitude?.message}</p>
         </div>
         <div className="user-box">
-        <input
-         
-          type="text"
-          placeholder="Longitude"
-          {...register("longitude", {
-            required: "ingrese longitud",
-          })}
-        />
-        <label>Longitud</label>
-        <p>{errors.longitude?.message}</p>
+          <input
+            type="text"
+            placeholder="Longitud..."
+            {...register("longitude", {
+              
+            })}
+          />
+          <label>Longitud</label>
+          <p>{errors.longitude?.message}</p>
         </div>
         <button className="button" type="submit">
           Crear Punto
         </button>
-        
       </form>
     </div>
   );
 };
 
 export default Forecast;
-
-// {/* // <div className="form-container"> */}
-// <span> Nuevo punto (forecast) </span>
-// <form className="form" onSubmit={handleSubmit(onSubmit)}>
-//   <input
-//     className="form__input"
-//     type="text"
-//     placeholder="Nombre de la ubicacion..."
-//     {...register("place", {
-//       required: "Debe ingresar el nombre de la ubicacion",
-//     })}
-//   />
-//   <p>{errors.place?.message}</p>
-//   <input
-//     className="input-form"
-//     type="text"
-//     placeholder="Latitude"
-//     {...register("latitude", {
-//       required: "Debe ingresar la latitud",
-//     })}
-//   />
-//   <p>{errors.latitude?.message}</p>
-//   <input
-//     className="input-form"
-//     type="text"
-//     placeholder="Longitude"
-//     {...register("longitude", {
-//       required: "Debe ingresar la longitud",
-//     })}
-//   />
-//   <p>{errors.longitude?.message}</p>
-
-//   <button className="button" type="submit">
-//     Crear Punto
-//   </button>
-  
-// </form>
-// </div>

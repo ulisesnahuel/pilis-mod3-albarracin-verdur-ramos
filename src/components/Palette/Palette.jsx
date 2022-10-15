@@ -1,9 +1,7 @@
 import "./Palette.css";
 import { AiOutlineClose } from "react-icons/ai";
-//import { ForecastContext } from "../../context/ForecastContext";
 
 const Palette = ({ palette }) => {
-  //const { forecast, setForecast } = useContext(ForecastContext);
   const { id, place, latitude, longitude, temperature, windspeed } = palette;
 
   const handleDelete = (id) => {
@@ -21,10 +19,9 @@ const Palette = ({ palette }) => {
           <span className="location">{place}</span>
         </div>
         <div className="currentWeather">
-          <span className="delete"><AiOutlineClose
-          className="icon"
-          onClick={() => handleDelete(id)}
-        /></span>
+          <span className="delete">
+            <AiOutlineClose className="icon" onClick={() => handleDelete(id)} />
+          </span>
           <span className="conditions">&#xf00d;</span>
           <div className="info">
             <span className="wind">{windspeed}</span>
@@ -32,8 +29,6 @@ const Palette = ({ palette }) => {
         </div>
       </div>
     </div>
-
-    
   );
 };
 
