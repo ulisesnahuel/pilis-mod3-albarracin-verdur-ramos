@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/pilis-mod3-albarracin-verdur-ramos/static/css/main.785673d7.css",
+    "main.js": "/pilis-mod3-albarracin-verdur-ramos/static/js/main.f44b50b9.js",
+    "static/js/787.7cf6d9b8.chunk.js": "/pilis-mod3-albarracin-verdur-ramos/static/js/787.7cf6d9b8.chunk.js",
+    "static/media/forecast.png": "/pilis-mod3-albarracin-verdur-ramos/static/media/forecast.142e3a831145ece233bb.png",
+    "index.html": "/pilis-mod3-albarracin-verdur-ramos/index.html",
+    "main.785673d7.css.map": "/pilis-mod3-albarracin-verdur-ramos/static/css/main.785673d7.css.map",
+    "main.f44b50b9.js.map": "/pilis-mod3-albarracin-verdur-ramos/static/js/main.f44b50b9.js.map",
+    "787.7cf6d9b8.chunk.js.map": "/pilis-mod3-albarracin-verdur-ramos/static/js/787.7cf6d9b8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.785673d7.css",
+    "static/js/main.f44b50b9.js"
+  ]
+}
